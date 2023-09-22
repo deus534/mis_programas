@@ -1,45 +1,33 @@
-#realizacion de mi makefile
+CC		=	gcc
+#CFLAGS	=	-c -Wall -g -fpack-struct -I$(HEADDIR)/
+#CFLAGS	=	-c -Wall -g -fpack-struct
+CFLAGS	=	-c -Wall -g
+LDFLAGS	=	-Wall -g
 
-CC = gcc
-CFLAGS = -c -Wall
-LDFLAGS = -Wall
-OBJS = main.o client.o server.o
-EDITOR = vim
+VERSION	=
+CLASE	=	20
+OBJDIR	=	obj
+BINDIR	=	bin
+SRCDIR	=	src
+HEADDIR	=	headers
+OBJS	=	$(OBJDIR)/main$(VERSION).o $(OBJDIR)/funciones$(VERSION).o  $(OBJDIR)/client$(VERSION).o $(OBJDIR)/server$(VERSION).o
+SOURCES	=	main$(VERSION).c
+HEADERS	=	funciones$(VERSION).h
+EJEC	=	ejec
 
-FOBJ = obj/
-FBIN = bin/
-FSRC = src/
 
-ejec: $(OBJS) Makefile
-	$(CC) -o $@ $(OBJS) $(LDFLAGS)
-	mv $(OBJS) $(FOBJ)
-	mv ejec $(FBIN)
-%.o: $(FSRC)%.c
+$(BINDIR)/$(EJEC): $(OBJS)
+	$(CC) $(LDFLAGS) $(OBJS) -o $@
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c Makefile
 	$(CC) $(CFLAGS) $< -o $@
+
 clean:
-	rm -f $(FOBJ)*.o
-	rm -f $(FBIN)ejec
+	rm -f $(OBJDIR)/*.o
+	rm -f $(BINDIR)/$(EJEC)
 
-new: clean ejec
+new: clean $(BINDIR)/$(EJEC)
 
-%.c: 
-	$(EDITOR) src/$@
-%.h:
-	$(EDITOR) headers/$@	
-
-help:
-	@echo "+++++++++++++++++++++++++++++"
-	@echo "\t\t COMANDOS LINKEO COMPILO BORRADO"
-	@echo "\tmake ejec        linkea y compila"
-	@echo "\tmake clean       remueve objecs y ejecutables"
-	@echo "\tmake new         realiza clean y ejec"
-	@echo "\tmake help        muestra la ayuda"
-	
-	@echo "\n\t\t COMANDOS EDICION DE ARCHIVOS"
-	@echo "\tmake client.c         abre con $(EDITOR) client.c"
-	@echo "\tmake main.c           abre con $(EDITOR) main.c"
-	@echo "\tmake server.c         abre con $(EDITOR) server.c"
-	@echo "\tmake client.h         abre con $(EDITOR) client.h"
-	@echo "\tmake server.h         abre con $(EDITOR) server.h"
-	@echo "\tNOTA: puede cambiar tipo de editor en el archivo Makefile"
-	@echo "+++++++++++++++++++++++++++++"
+git:
+	git commit -m "Clase $(CLASE) Version $(VERSION)"
+	git push

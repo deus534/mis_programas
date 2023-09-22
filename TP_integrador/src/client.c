@@ -50,7 +50,7 @@ int realizar_menu_2( Documento_t ** lista, int peticion )
 {
 	int nro_menu = MENU_2;
 
-	if(	peticion==SALIDA_MENU_2 )
+	if( peticion==SALIDA_MENU_2 )
 	{
 		nro_menu = MENU_1;
 	}
@@ -61,10 +61,6 @@ int realizar_menu_2( Documento_t ** lista, int peticion )
 	else if ( peticion==2 )
 	{
 		nro_menu = subir_documento();
-	}
-	else
-	{
-		printf("Introduce una opcion correcta\n");
 	}
 
 	return nro_menu;
@@ -94,9 +90,6 @@ int realizar_menu_3( Documento_t ** lista, int peticion )
 		case 5:
 			nro_menu = actualizar_documentos(lista);
 			break;
-		default:
-			printf("Introduce una opcion correcta\n");
-			break;
 	}
 
 	return nro_menu;
@@ -112,19 +105,32 @@ void iniciar_menu(int * nro_menu, int peticion, Usuario_t * us, Documento_t ** l
 		else
 		{
 			printf("Introduce una opcion correcta\n");
-			*nro_menu = MENU_1;
 		}
 	}
 	else 
 	{
 		if ( *nro_menu==MENU_2 )
 		{
-			*nro_menu = realizar_menu_2( lista, peticion );
+			if( peticion>0 && peticion<=SALIDA_MENU_2 )
+			{
+				*nro_menu = realizar_menu_2( lista, peticion );
+			}
+			else
+			{
+				printf("Introduce una opcion correcta\n");
+			}
 		}
 		//por descarte entro al MENU_3
 		else 
-		{			
-			*nro_menu = realizar_menu_3( lista, peticion );
+		{	
+			if( peticion>0 && peticion <= SALIDA_MENU_3 )
+			{
+				*nro_menu = realizar_menu_3( lista, peticion );
+			}
+			else
+			{
+				printf("Introduce una opcion correcta\n");
+			}	
 		}
 	}
 }

@@ -1,16 +1,35 @@
+#include <stdio.h>
+
 #include "../headers/funciones.h"
 #include "../headers/structs.h"
 #include "../headers/client.h"
 
 
+int leer_cadena(char* cad,int lon_max  )
+{
+	fgets(cad, lon_max, stdin);
+	if( cad[strlen(cad)-1]=='\n' )
+	{
+		cad[strlen(cad)-1] == '\0';
+	}
+}
+
 //pensarlo como hacer todo esto y ver si funciona o se va todo
 int leer_peticion()
 {
-	int num;
+	char cad[2];
+	int peticion;
 
-	fgets()
+	//solo leo un caracter que sera un numero
+	leer_cadena(cad, 2);	
 
-	return num;
+	//que el numero leido este entre el rango maximo, de mis menus
+	if( cad[0]>'0' && cad[0]<'7' )
+	{
+		peticion = cad[0] - '0' ;
+	}
+
+	return peticion;
 }
 
 int leer_baja_usuario();

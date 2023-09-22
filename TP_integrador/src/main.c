@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "../headers/funciones.h"
 #include "../headers/structs.h"
+#include "../headers/funciones.h"
 #include "../headers/client.h"
 
 int main(int argc, char* argv[])
