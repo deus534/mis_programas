@@ -1,38 +1,47 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdio_ext.h>
 
-#include "../headers/funciones.h"
 #include "../headers/structs.h"
+#include "../headers/funciones.h"
 #include "../headers/client.h"
 
 
 int leer_cadena(char* cad,int lon_max  )
 {
+
 	fgets(cad, lon_max, stdin);
+	
 	if( cad[strlen(cad)-1]=='\n' )
 	{
-		cad[strlen(cad)-1] == '\0';
+		cad[strlen(cad)-1] = '\0';
 	}
+	else
+	{
+		//si leo demas, limpio mi buffer de teclado
+		__fpurge(stdin);
+	}
+	return strlen(cad);
 }
 
-//pensarlo como hacer todo esto y ver si funciona o se va todo
+//lee un numero entre (0,9)
 int leer_peticion()
 {
-	char cad[2];
-	int peticion;
+	char cad[10];
+	int peticion = -1;
+	int lon;
 
-	//solo leo un caracter que sera un numero
-	leer_cadena(cad, 2);	
-
-	//que el numero leido este entre el rango maximo, de mis menus
-	if( cad[0]>'0' && cad[0]<'7' )
+	lon = leer_cadena(cad, 10);	
+	
+	//valido que sea solo me ingrese UN numero
+	if( cad[0]>='0' && cad[0]<='9' && lon==1 )
 	{
 		peticion = cad[0] - '0' ;
 	}
 
 	return peticion;
 }
-
-int leer_baja_usuario();
 
 //encripta un caracter con root13
 char root5(char c)
@@ -96,7 +105,6 @@ void encriptar_contrasenia(char* cont,char* encriptado)
 Usuario_t* nuevo_usuario(char* nom, char* cont, int nivel)
 {
 	Usuario_t* us;
-	char* encrip;
 
 	//pido memoria
 	us = (Usuario_t*)malloc( sizeof(Usuario_t) );
@@ -120,7 +128,7 @@ Usuario_t* nuevo_usuario(char* nom, char* cont, int nivel)
 		else
 		{
 			//no me pudieron dar memoria para los char*
-			us == NULL;
+			us = NULL;
 		}
 	}
 	return us;

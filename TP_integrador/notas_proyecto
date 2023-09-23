@@ -1,0 +1,5 @@
+Nota: para probar que ande funcionando puse que todo validaba, es decir, que funcionaba siempre me agregaba el usuario, que siempre estaba bien la contrasenia en la funciona de iniciar sesion, y asi con cada una de las funciones
+
+1.-) Aun me falta terminar el donde guardar los usuarios (funciones de server.h)
+2.-) Por ahora todo lo realizionado, con moverse entre menus y las funciones que se realizara esta terminado
+3.-) La validacion del servidor sobre lo que retorna errores aun falta terminarlo

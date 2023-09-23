@@ -1,7 +1,8 @@
 #include <stdio.h>
 
-#include "../headers/client.h"
 #include "../headers/structs.h"
+#include "../headers/funciones.h"
+#include "../headers/client.h"
 #include "../headers/server.h"
 
 void mostrar_menu(int nro_menu)
@@ -37,7 +38,7 @@ int realizar_menu_1( Usuario_t* us,int peticion )
 
 	if( peticion==SALIDA_MENU_1 )
 	{
-		nro_menu = SALIDA;
+		nro_menu = MENU_0;
 	}
 	else
 	{
@@ -104,7 +105,7 @@ void iniciar_menu(int * nro_menu, int peticion, Usuario_t * us, Documento_t ** l
 		}
 		else
 		{
-			printf("Introduce una opcion correcta\n");
+			printf("++++++++INTRODUCE UNA OPCION CORRECTA++++++++\n");
 		}
 	}
 	else 
@@ -117,7 +118,7 @@ void iniciar_menu(int * nro_menu, int peticion, Usuario_t * us, Documento_t ** l
 			}
 			else
 			{
-				printf("Introduce una opcion correcta\n");
+				printf("++++++++INTRODUCE UNA OPCION CORRECTA++++++++\n");
 			}
 		}
 		//por descarte entro al MENU_3
@@ -129,7 +130,7 @@ void iniciar_menu(int * nro_menu, int peticion, Usuario_t * us, Documento_t ** l
 			}
 			else
 			{
-				printf("Introduce una opcion correcta\n");
+				printf("++++++++INTRODUCE UNA OPCION CORRECTA++++++++\n");
 			}	
 		}
 	}
@@ -197,7 +198,7 @@ int borrar_usuario(Usuario_t* us)
 		printf("1) SI\n");
 		printf("2) NO\n");
 		//lee por consola la baja de usuario
-		elim = leer_baja_usuario();
+		elim = leer_peticion();
 
 		if( elim == 1 )
 		{
@@ -212,6 +213,13 @@ int borrar_usuario(Usuario_t* us)
 				printf("ERROR no se pudo borrar el usuario\n");
 			}
 			nro_menu = MENU_1;
+		}
+		else
+		{
+			if( elim==-1 )
+			{
+				printf("Introduce una opcion correcta\n");
+			}
 		}
 	}
 	return nro_menu;
@@ -230,7 +238,7 @@ int subir_documento()
 
 //MENU_3
 
-void mostrar_documentos_nombre(Documento_t ** lista)
+int mostrar_documentos_nombre(Documento_t ** lista)
 {
 	return MENU_3;
 }
@@ -238,15 +246,15 @@ int mostrar_documentos_autor(Documento_t ** lista)
 {
 	return MENU_3;
 }
-int mostrar_documento()
+int mostrar_un_documento()
 {
 	return MENU_3;
 }
-int descargar_documento()
+int descargar_un_documento()
 {
 	return MENU_3;
 }
-int actualizar_documento()
+int actualizar_documentos(Documento_t **lista)
 {
 	return MENU_3;
 }

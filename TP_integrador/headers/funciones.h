@@ -6,8 +6,7 @@
 	//solicita por teclado lo que quiere hacer ya sea 1,2,3,etc.. validando cada error que se pueda tener
 	
 	int leer_peticion();
-	int leer_baja_usuario();
-	char* encriptar_contrasenia(char* cont);
+	void encriptar_contrasenia(char* cont,char* enc);
 
 
 #endif

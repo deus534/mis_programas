@@ -1,6 +1,6 @@
 
-#include "../headers/server.h"
 #include "../headers/structs.h"
+#include "../headers/server.h"
 
 int alta_de_usuario(Usuario_t* us)
 {

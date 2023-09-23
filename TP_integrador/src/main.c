@@ -8,8 +8,8 @@ int main(int argc, char* argv[])
 {
 	int nro_menu = MENU_1;
 	int peticion;
-	Documento_t** lista;
-	Usuario_t * us;
+	Documento_t** lista = NULL;
+	Usuario_t * us = NULL;
 
 	if( argc>1 )
 	{
@@ -21,10 +21,17 @@ int main(int argc, char* argv[])
 			while( nro_menu!=MENU_0 )
 			{
 				mostrar_menu(nro_menu);
-
+				//scanf("%d",&peticion);
 				peticion = leer_peticion();
-
-				iniciar_menu(&nro_menu, peticion, us, lista);
+				
+				if( peticion == -1 )
+				{
+					printf("++++++++INTRODUCE UNA OPCION CORRECTA++++++++\n");
+				}
+				else
+				{
+					iniciar_menu(&nro_menu, peticion, us, lista);
+				}
 
 			}
 		}
