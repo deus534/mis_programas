@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <sys/types.h>
-#include <sys/socket.h>
+#include <Winsock2.h>
 #include <unistd.h>
-#include "structs.h"
-#include "funciones.h"
+#include "../headers/structs.h"
+#include "../headers/funciones.h"
 
 
 int main(int argc, char * argv[])
