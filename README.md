@@ -1,6 +1,6 @@
 creacion de mi repositorio para la realizacion de todos los proyectos que realize...
 
-NOTA DE TP_INTEGRADOR
+NOTA DE TP INTEGRADOR
 1) cuando lo leo con una funcion pues como que se traba todo
  Puede que sea, porque si digamos no introduzco un numero este no me lo transforma ni a palo y por eso  no funciona
 
