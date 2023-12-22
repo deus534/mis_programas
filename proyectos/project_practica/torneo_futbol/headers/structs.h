@@ -16,17 +16,19 @@
                 int codRes;
                 char estadio[20];
         }Resultado_t;
+
         typedef struct Equipo
         {
                 int idEq;
                 char nombre[20];
                 int puntos;
         }Equipo_t;
+
         typedef struct Estadio
         {
-                char estadio[20]: 
                 int partidos;
                 int empatados;
+                char estadio[20]: 
         }Estadio_t;
         typedef struct Nodo
         {
