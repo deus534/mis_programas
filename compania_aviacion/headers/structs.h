@@ -7,9 +7,9 @@
         #define ERRMEM 2
         #define ERRFILE 3
 
-        #define ARCH_VUELOS "cfg/vuelos.dat"
-        #define ARCH_CIUDADES "cfg/ciudades.dat"
-        #define ARCH_RESERVAS "cfg/reservas.dat"
+        #define ARCH_VUELOS "cfg/VUELOS.dat"
+        #define ARCH_CIUDADES "cfg/CIUDADES.dat"
+        #define ARCH_RESERVAS "cfg/RESERVAS.dat"
         
         //estrucutras para la obtencion de datos de los archivos
         typedef struct Ciudad

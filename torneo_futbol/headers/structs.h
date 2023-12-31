@@ -6,17 +6,20 @@
         #define ERRFILE 2
         #define ERRMEM 3
 
-        #define ARCH_EQUIPOS "cfg/equipos.dat"
-        #define ARCH_RESULTADOS "cfg/resultados.dat"
+        #define ARCH_EQUIPOS "cfg/EQUPOS.dat"
+        #define ARCH_RESULTADOS "cfg/RESULTADOS.dat"
 
         typedef struct Resultado
         {
                 int idEq1;
                 int idEq2;
-                int codRes;
                 char estadio[20];
+                int codRes;
         }Resultado_t;
 
+        struct MyStruct {
+                
+        };
         typedef struct Equipo
         {
                 int idEq;
@@ -27,8 +30,8 @@
         typedef struct Estadio
         {
                 int partidos;
+                char estadio[20];
                 int empatados;
-                char estadio[20]: 
         }Estadio_t;
         typedef struct Nodo
         {

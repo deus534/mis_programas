@@ -37,7 +37,6 @@ int main()
                                 //2.2)NO hay espacio -> sumo cantidad de rechazados
                                 //3)tomo el abs de la diferncia de millas entre origen y destino y la sumo a sus millas
                                 analizar_espacio(list_RV, list_RC, &dato);
-                                printf("Procces complete\n");
                                 //4)mostrar Datos
                                 printf("Cliente: %d millas: %d\n", dato.reserva.idCli, dato.total_millas);
                         }

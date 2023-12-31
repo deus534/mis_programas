@@ -78,7 +78,6 @@ void analizar_espacio(Nodo_t * list_RV, Nodo_t * list_RC, Cliente_t * dato_clien
         //busco el vuelo y obtengo la direccion de memoria del vuelo
         r_vue = (RVuelo_t *)buscar(list_RV, (void *)&dato_cliente->reserva.idVue, busq_idVuelo);
 
-        printf("Procces buscar vuelo paste\n");
         if( r_vue )
         {
                 //verifico el espacio disponible
@@ -89,7 +88,6 @@ void analizar_espacio(Nodo_t * list_RV, Nodo_t * list_RC, Cliente_t * dato_clien
                         //busco las ciudades(Aca no puede fallar el buscar ya seria problema del que escribe el archivo)
                         r_c1 = (RCiudad_t *)buscar(list_RC, (void *)&r_vue->vuelo.idOrg, busq_idCiudad);
                         r_c2 = (RCiudad_t *)buscar(list_RC, (void *)&r_vue->vuelo.idDest, busq_idCiudad);
-                        printf("Procces buscar RCiudad paste\n");
                         //sumo las millas al cliente
                         dato_cliente->total_millas += abs(r_c1->ciudad.millas-r_c2->ciudad.millas)*dato_cliente->reserva.cant;
                         //sumo cantidad que eligieron de destino a ciudad de orien
@@ -110,7 +108,7 @@ void mostrarListaRVuelo(Nodo_t * list_RV)
         while (list_RV) 
         {
                 ptr = (RVuelo_t *)list_RV->dato;
-                if( ptr->vuelo.cap != ptr->aceptados ) strcpy(msg, "INCOMPLETO");
+                if( ptr->vuelo.cap <= ptr->aceptados ) strcpy(msg, "INCOMPLETO");
                 else strcpy(msg, "COMPLETO");
  
                 printf("vuelo: %d tiene: %d rechazados y sale %s\n",ptr->vuelo.idVue, ptr->rechazados, msg);
