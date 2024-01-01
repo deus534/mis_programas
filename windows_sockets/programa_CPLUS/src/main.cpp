@@ -1,61 +1,53 @@
-#include <stdio.h>
-#include <iostream>
+#ifndef UNICODE
+#define UNICODE
+#endif
 
-//encabezados para sockets
+#define WIN32_LEAN_AND_MEAN
+
 #include <winsock2.h>
-#include <arpa/inet.h>
-//definicion de constantes
-#define PORT 15001
+#include <Ws2tcpip.h>
+#include <stdio.h>
+#include <winerror.h>
 
+// Link with ws2_32.lib
+#pragma comment(lib, "Ws2_32.lib")
+
+//compilar: g++ .\src\main.cpp -o ejec -lwsock32
 int main()
 {
-        SOCKET mi_socket = INVALID_SOCKET;
-        sockaddr_int service;
-        int id_result;
+        int iResult = 0;            // used to return function results
+        SOCKET ListenSocket;
+        SOCKET nuevo_socket;
+        sockaddr_in service;
 
-
-
-        mi_socket = socket(AF_INET, SOCK_STREAM, 0);
-
-        if( mi_socket!=INVALID_SOCKET )
+        ListenSocket = socket(AF_INET, SOCK_STREAM, 0);
+        
+        if (ListenSocket != INVALID_SOCKET)
         {
-                printf("Creacion correcta\n");
+                printf("socket abierto\n");
                 service.sin_family = AF_INET;
                 service.sin_addr.s_addr = inet_addr("127.0.0.1");
-                service.sin_port() = htons(PORT);
+                service.sin_port = htons(27015);
+
+                iResult = bind(ListenSocket, (SOCKADDR *) &service, sizeof (service));
                 
-                id_result = bind(mi_socket, (SOCK_ADDR *)&service, sizeof(service) );
-
-                if( id_result!=SOCKET_ERROR )
+                if (iResult != SOCKET_ERROR)
                 {
-                        printf("CREACION CORRECTA\n");
-                        if( listen(mi_socket,SOMAXCONN)!=SOCKET_ERROR )
+                        if ( listen(ListenSocket, SOMAXCONN) != SOCKET_ERROR )
                         {
-                                printf("LISTEN CORRECTO\n");
-
+                                printf("Escuchando conexiones\n");
+                                nuevo_socket = accept(ListenSocket, NULL, NULL);
+                                if (nuevo_socket != INVALID_SOCKET) {
+                                        printf("conexion aceptada\n");
+                                        closesocket(nuevo_socket);
+                                }
                         }
-                        else 
-                        {
-                                printf("ERROR DE LISTEN\n");
-                        }
+                        else printf("error de listen\n");
                 }
-                else 
-                {
-                        printf("ERROR DE BIND\n");
-                }
-                closesocket(mi_socket);
+                else printf("error de bind\n");
+                closesocket(ListenSocket);
         }
-        else
-        {
-                printf("ERROR de socket\n");        
-        }
+        else printf("No se pudo abrir el socket perrin");
 
-        /*
-        int num;
-        scanf("%d", &num);
-        printf("el numero es: %d\n", num);
-        std::cout << "hola mundo\n";
-        printf("hola mundo\n");
-        */
         return 0;
 }
